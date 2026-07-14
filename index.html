@@ -543,10 +543,16 @@ function setTopbarVisible(visible){
   if(el) el.style.display = visible ? 'flex' : 'none';
 }
 
+function setSidebarVisible(visible){
+  const el = document.getElementById('sidebar');
+  if(el) el.style.display = visible ? '' : 'none';
+}
+
 function selectSection(id){
   clearActiveNav();
   setBackHomeVisible(true);
   setTopbarVisible(true);
+  setSidebarVisible(true);
   const btn = document.getElementById('navbtn-' + id);
   if(btn) btn.classList.add('active');
   currentSectionId = id;
@@ -597,6 +603,7 @@ function renderSubcategoryHub(section){
 
 function selectSubcategory(parentId, subId){
   clearActiveNav();
+  setSidebarVisible(true);
   const btn = document.getElementById('navbtn-' + parentId);
   if(btn) btn.classList.add('active');
   const section = SITE_DATA.find(s => s.id === parentId);
@@ -753,6 +760,7 @@ function selectHome(){
   setBackHomeVisible(false);
   setBackCatVisible(false);
   setTopbarVisible(false);
+  setSidebarVisible(false);
   document.getElementById('navbtn-home').classList.add('active');
   currentSectionId = 'home';
   document.getElementById('crumbs').textContent = 'Database Vendor';
@@ -767,6 +775,7 @@ function selectForm(){
   setBackHomeVisible(true);
   setBackCatVisible(false);
   setTopbarVisible(true);
+  setSidebarVisible(true);
   document.getElementById('navbtn-form').classList.add('active');
   currentSectionId = 'form';
   document.getElementById('crumbs').textContent = 'Database Vendor';
